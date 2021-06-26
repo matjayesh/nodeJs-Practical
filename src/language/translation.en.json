@@ -1,0 +1,6 @@
+{
+  "ERR_INTERNAL_SERVER": "Internal Server Error, Please try again",
+  "ERR_GENRIC_SYNTAX": "JSON request could not be parsed",
+  "ERR_URL_NOT_FOUND": "Requested URL not found!",
+  "SOMETHING_WENT_WRONG": "Something went wrong, Please try again"
+}
