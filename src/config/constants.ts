@@ -8,4 +8,5 @@ export class Constants {
   public static readonly HASH_STRING_LIMIT = 12;
   public static readonly EMAIL_MAX_LENGTH = 50;
   public static readonly NAME_MAX_LENGTH = 40;
+  public static readonly TOPIC_TITLE_MAX_LENGTH = 200;
 }

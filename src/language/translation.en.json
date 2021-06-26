@@ -14,5 +14,9 @@
   "ERR_EMAIL_ALREADY_USED": "Email address already exists",
   "WELCOME_MAIL_SUBJECT": "Welcome to Application",
   "ACCOUNT_CREATED": "User created successful",
-  "ERR_INVALID_CREDENTIALS": "Invalid credentials"
+  "ERR_INVALID_CREDENTIALS": "Invalid credentials",
+  "ERR_UNAUTH": "You are unauthorized",
+  "ERR_MAX_LENGTH_TOPIC_TITLE": "Maximum topic length is 200",
+  "ERR_TOPIC_TITLE_REQUIRED": "Title should not be empty",
+  "SUCCESS_TOPIC_CREATE" : "Topic created successfully"
 }
