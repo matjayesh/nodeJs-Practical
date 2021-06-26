@@ -1,4 +1,5 @@
 import express = require("express");
+import { UserRoute } from "./modules/user/userRoute";
 
 export class Routes {
   protected basePath: string;
@@ -19,6 +20,8 @@ export class Routes {
 
   public path() {
     const router = express.Router();
+    // route for user auth related APIs
+    router.use("/user", UserRoute);
 
     router.all("/*", (req, res) => {
       return res.status(404).json({

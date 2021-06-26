@@ -6,4 +6,6 @@ export class Constants {
   public static readonly DEFAULT_PAGE = 1;
   public static readonly FAIL_CODE = 400;
   public static readonly HASH_STRING_LIMIT = 12;
+  public static readonly EMAIL_MAX_LENGTH = 50;
+  public static readonly NAME_MAX_LENGTH = 40;
 }

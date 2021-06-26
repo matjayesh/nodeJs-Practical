@@ -2,5 +2,17 @@
   "ERR_INTERNAL_SERVER": "Internal Server Error, Please try again",
   "ERR_GENRIC_SYNTAX": "JSON request could not be parsed",
   "ERR_URL_NOT_FOUND": "Requested URL not found!",
-  "SOMETHING_WENT_WRONG": "Something went wrong, Please try again"
+  "SOMETHING_WENT_WRONG": "Something went wrong, Please try again",
+  "ERR_NAME_REQUIRED": "Name should not be empty",
+  "ERR_MAX_LENGTH_NAME": "Maximun length of name is 40",
+  "ERR_MAX_LENGTH_EMAIL": "Maximum email length is 50",
+  "ERR_INVALID_EMAIL": "Please provide a valid email address",
+  "ERR_EMAIL_REQUIRED": "Email address should not be empty",
+  "ERR_INVALID_PASSWORD_VALIDATIONS": "Please use strong password",
+  "ERR_PASSWORD_REQUIRED": "Password should not be empty",
+  "ERR_EMAIL_NOT_EXIST": "Email Address does not exist",
+  "ERR_EMAIL_ALREADY_USED": "Email address already exists",
+  "WELCOME_MAIL_SUBJECT": "Welcome to Application",
+  "ACCOUNT_CREATED": "User created successful",
+  "ERR_INVALID_CREDENTIALS": "Invalid credentials"
 }

@@ -61,9 +61,11 @@ export class App {
     this.app.use(bodyParser.json({ type: "application/vnd.api+json" })); // parse application/vnd.api+json as json
     this.app.use(methodOverride());
     const routes = new Routes(NODE_ENV);
-    this.app.use("/api", routes.path());
+    this.app.use("/api/v1", routes.path());
     this.app.use((err: any, req: any, res: any, next: () => void) => {
       if (err) {
+        // tslint:disable-next-line: no-console
+        console.log("err", err);
         return res.status(400).json({ error: req.t("SOMETHING_WENT_WRONG") });
       }
     });
