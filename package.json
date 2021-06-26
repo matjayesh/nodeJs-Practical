@@ -7,7 +7,7 @@
     "tsc": "tsc",
     "lint": "tslint -c tslint.json 'src/**/*.ts' --fix",
     "start": "tsc --watch & nodemon --inspect dist",
-    "build": "tsc && mkdir -p uploads && mkdir -p dist/templates && cp -R src/templates/* dist/templates"
+    "build": "tsc && mkdir -p dist/templates && cp -R src/templates/* dist/templates && mkdir -p dist/images"
   },
   "repository": {
     "type": "git",

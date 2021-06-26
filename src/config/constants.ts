@@ -9,4 +9,5 @@ export class Constants {
   public static readonly EMAIL_MAX_LENGTH = 50;
   public static readonly NAME_MAX_LENGTH = 40;
   public static readonly TOPIC_TITLE_MAX_LENGTH = 200;
+  public static readonly POST_TITLE_MAX_LENGTH = 50;
 }

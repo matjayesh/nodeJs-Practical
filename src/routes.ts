@@ -1,5 +1,6 @@
 import express = require("express");
 import { Middleware } from "./middleware";
+import { PostRoute } from "./modules/post/postRoute";
 import { TopicRoute } from "./modules/topic/topicRoute";
 import { UserRoute } from "./modules/user/userRoute";
 
@@ -27,6 +28,8 @@ export class Routes {
     router.use("/user", UserRoute);
     // route for topic APIs
     router.use("/topics", middleware.authenticateUser, TopicRoute);
+    // route for post APIs
+    router.use("/posts", middleware.authenticateUser, PostRoute);
 
     router.all("/*", (req, res) => {
       return res.status(404).json({

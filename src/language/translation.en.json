@@ -17,6 +17,11 @@
   "ERR_INVALID_CREDENTIALS": "Invalid credentials",
   "ERR_UNAUTH": "You are unauthorized",
   "ERR_MAX_LENGTH_TOPIC_TITLE": "Maximum topic length is 200",
-  "ERR_TOPIC_TITLE_REQUIRED": "Title should not be empty",
-  "SUCCESS_TOPIC_CREATE" : "Topic created successfully"
+  "ERR_TOPIC_TITLE_REQUIRED": "Topic should not be empty",
+  "SUCCESS_TOPIC_CREATE" : "Topic created successfully",
+  "ERR_TITLE_REQUIRED": "Title should not be empty",
+  "ERR_DESCRIPTION_REQUIRED": "Description should not be empty",
+  "ERR_TOPIC_ID_REQUIRED": "Topic Id should not be empty",
+  "ERR_MAX_LENGTH_POST_TITLE": "Maximum post title length is 50",
+  "POST_CREATE_SUCCESS": "Post created successfully"
 }
