@@ -23,5 +23,8 @@
   "ERR_DESCRIPTION_REQUIRED": "Description should not be empty",
   "ERR_TOPIC_ID_REQUIRED": "Topic Id should not be empty",
   "ERR_MAX_LENGTH_POST_TITLE": "Maximum post title length is 50",
-  "POST_CREATE_SUCCESS": "Post created successfully"
+  "POST_CREATE_SUCCESS": "Post created successfully",
+  "ERR_COMMENT_REQUIRED": "Comment should not be empty",
+  "ERR_POST_ID_REQUIRED": "Post Id should not be empty",
+  "COMMENT_ADDED_SUCCESS": "Comment added successfully"
 }

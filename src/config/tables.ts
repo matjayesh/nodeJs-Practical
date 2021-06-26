@@ -3,6 +3,7 @@ export class Tables {
   public static readonly TOPICS = "topics";
   public static readonly POSTS = "posts";
   public static readonly UPLOADS = "uploads";
+  public static readonly COMMENTS = "comments";
 }
 
 export enum UserTable {
@@ -35,6 +36,15 @@ export enum UploadTable {
   ID = "id",
   POST_ID = "postId",
   IMAGE = "image",
+  CREATED_AT = "createdAt",
+  UPDATED_AT = "updatedAt",
+}
+
+export enum CommentTable {
+  ID = "id",
+  POST_ID = "postId",
+  USER_ID = "userId",
+  COMMENT = "comment",
   CREATED_AT = "createdAt",
   UPDATED_AT = "updatedAt",
 }

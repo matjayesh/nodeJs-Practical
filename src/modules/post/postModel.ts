@@ -21,3 +21,19 @@ export class PostModel extends Model {
         this.topicId = body.topicId;
     }
 }
+
+export class CommentModel extends Model {
+
+    @IsNotEmpty({ message: "ERR_COMMENT_REQUIRED" })
+    public comment: string;
+
+    @IsNotEmpty({ message: "ERR_POST_ID_REQUIRED" })
+    public postId: string;
+
+    constructor(body: any) {
+        super();
+        this.comment = body.comment;
+        this.postId = body.postId;
+    }
+
+}

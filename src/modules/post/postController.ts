@@ -7,8 +7,9 @@ export class PostController {
     private postUtils: PostUtils = new PostUtils();
 
     public createPost = async (req: Request, res: Response) => {
+        const { id } = req._user;
         const { topicId, title, description } = req.body;
-        const postData: Json = { topicId, title, description };
+        const postData: Json = { topicId, title, description , userId: id};
         const postImages = [];
         const resPostData = await this.postUtils.addPost(postData);
         if (req.files && req.files.images) {
@@ -30,6 +31,22 @@ export class PostController {
             await this.postUtils.insertUploads(postImages);
         }
         const response = ResponseBuilder.successMessage(req.t("POST_CREATE_SUCCESS"));
+        res.status(response.code).json(response);
+    }
+
+    public addComment = async (req: Request, res: Response) => {
+        const { postId, comment } = req.body;
+        const { id } = req._user;
+        const commentData: Json = { postId, comment, userId: id };
+        await this.postUtils.addComment(commentData);
+        const response = ResponseBuilder.successMessage(req.t("COMMENT_ADDED_SUCCESS"));
+        res.status(response.code).json(response);
+    }
+
+    public getPosts = async (req: Request, res: Response) => {
+        const postsData = await this.postUtils.getPosts(req.query);
+        const { result, count } = postsData;
+        const response = ResponseBuilder.dataWithPaginate(result, count);
         res.status(response.code).json(response);
     }
 }
