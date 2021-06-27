@@ -21,4 +21,10 @@ export class Constants {
   public static readonly SQYD_TO_SQFT = 9;
   public static readonly SQMT_TO_SQYD = 1.19599;
   public static readonly SQMT_TO_SQFT = 10.7639;
+  public static readonly DATE_SELECTION = {
+    THIS_WEEK: "this_week",
+    LAST_FIVE_WEEK: "last_five_week",
+    LAST_FIFTEEN_WEEK: "last_fifteen_week",
+    ALL: "all",
+  };
 }

@@ -41,4 +41,11 @@ export class PropertyController {
         const response = ResponseBuilder.successMessage(req.t("PROPERTY_CREATE_SUCCESS"));
         res.status(response.code).json(response);
     }
+
+    public getProperties = async (req: Request, res: Response) => {
+        const propertyData = await this.propertyUtils.getProperties(req.query);
+        const { result, count } = propertyData;
+        const response = ResponseBuilder.dataWithPaginate(result, count);
+        res.status(response.code).json(response);
+    }
 }

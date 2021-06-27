@@ -13,4 +13,8 @@ const propertyCreateRoutePath = [v.validate(PropertyModel), propertyMiddleware.v
 propertyController.createProperty];
 router.post("/create", propertyCreateRoutePath);
 
+// Create list all properties
+const propertyListRoutePath = [propertyController.getProperties];
+router.get("/list", propertyListRoutePath);
+
 export const PropertyRoute: Router = router;

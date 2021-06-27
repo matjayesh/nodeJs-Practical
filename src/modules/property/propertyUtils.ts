@@ -27,7 +27,7 @@ export class PropertyUtils {
             areaSqYd = (areaSqMt * Constants.SQMT_TO_SQYD).toFixed(2);
             areaSqFt = (areaSqMt * Constants.SQMT_TO_SQFT).toFixed(2);
         }
-        return {areaSqFt, areaSqYd, areaSqMt};
+        return { areaSqFt, areaSqYd, areaSqMt };
     }
 
     public async addProperty(propertyDetail: Json) {
@@ -36,5 +36,63 @@ export class PropertyUtils {
 
     public async insertUploads(imageData: JsonArray) {
         return await sql.insertMany(Tables.PROPERTY_IMAGE, imageData);
+    }
+
+    public async getProperties(filterData) {
+        const { skip, limit, locality, date, bedroom, maxPrice, minPrice } = filterData;
+        const [page, pageLimit] = Utils.getPageSkipAndLimit(skip, limit);
+        let condition = "0=0";
+        const conditionValue = [pageLimit, page];
+        if (date) {
+            if (date === Constants.DATE_SELECTION.THIS_WEEK) {
+                condition += ` AND WEEK(property.createdAt) = WEEK(NOW()) AND YEAR(property.createdAt) = YEAR(NOW())`;
+            } else if (date === Constants.DATE_SELECTION.LAST_FIVE_WEEK) {
+                condition += ` AND property.createdAt BETWEEN (NOW() - INTERVAL 4 WEEK) AND NOW()`;
+            } else if (date === Constants.DATE_SELECTION.LAST_FIFTEEN_WEEK) {
+                condition += ` AND property.createdAt BETWEEN (NOW() - INTERVAL 14 WEEK) AND NOW()`;
+            }
+        }
+        if (bedroom) {
+            condition += ` AND property.bedroom = ${+bedroom}`;
+        }
+        if (maxPrice && minPrice) {
+            condition += ` AND property.price <= ${maxPrice} AND property.price >= ${minPrice}`;
+        }
+        if (locality && locality.length > 0) {
+            condition += ` AND property.locality IN (${locality})`;
+        }
+        const tables = `${Tables.PROPERTY} AS property
+        LEFT JOIN ${Tables.PROPERTY_IMAGE} AS images ON images.propertyId = property.id`;
+        const result = await sql.findAllWithCount(
+            tables,
+            [`DISTINCT property.id`],
+            [
+                `property.id,
+                property.name,
+                property.description,
+                property.address,
+                property.locality,
+                property.price,
+                property.bedroom,
+                property.bath,
+                property.areaSqFt,
+                property.areaSqYd,
+                property.areaSqMt,
+                CONCAT('[',
+                IF(images.id != 'NULL',GROUP_CONCAT(DISTINCT
+                    JSON_OBJECT(
+                    'image',images.image
+                    )
+                ),''),
+                ']') AS images
+          `],
+            condition,
+            ` GROUP BY property.id ORDER BY property.id DESC LIMIT ? OFFSET ? `, conditionValue,
+        );
+        const resData = result.result.map((data) => {
+            data.images = data && data.images ? Utils.formatStringObjectsToArrayObjects(data, "images") : null;
+            return data;
+        });
+        return { result: resData, count: result.count };
     }
 }
