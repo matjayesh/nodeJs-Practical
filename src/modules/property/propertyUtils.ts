@@ -1,6 +1,6 @@
 import * as sql from "jm-ez-mysql";
 import { Constants } from "../../config/constants";
-import { Tables } from "../../config/tables";
+import { FavoriteTable, Tables } from "../../config/tables";
 import { Utils } from "../../helpers/utils";
 
 export class PropertyUtils {
@@ -38,10 +38,11 @@ export class PropertyUtils {
         return await sql.insertMany(Tables.PROPERTY_IMAGE, imageData);
     }
 
-    public async getProperties(filterData) {
+    public async getProperties(filterData, isVisitor, userId ?: any) {
         const { skip, limit, locality, date, bedroom, maxPrice, minPrice } = filterData;
         const [page, pageLimit] = Utils.getPageSkipAndLimit(skip, limit);
         let condition = "0=0";
+        let userCondition = "";
         const conditionValue = [pageLimit, page];
         if (date) {
             if (date === Constants.DATE_SELECTION.THIS_WEEK) {
@@ -61,8 +62,12 @@ export class PropertyUtils {
         if (locality && locality.length > 0) {
             condition += ` AND property.locality IN (${locality})`;
         }
+        if (userId) {
+            userCondition = ` AND favP.userId = ${userId}`;
+        }
         const tables = `${Tables.PROPERTY} AS property
-        LEFT JOIN ${Tables.PROPERTY_IMAGE} AS images ON images.propertyId = property.id`;
+        LEFT JOIN ${Tables.PROPERTY_IMAGE} AS images ON images.propertyId = property.id
+        LEFT JOIN ${Tables.FAVORITE_PROPERTY} AS favP ON favP.propertyId = property.id ${userCondition}`;
         const result = await sql.findAllWithCount(
             tables,
             [`DISTINCT property.id`],
@@ -78,6 +83,7 @@ export class PropertyUtils {
                 property.areaSqFt,
                 property.areaSqYd,
                 property.areaSqMt,
+                favP.id as favoriteId,
                 CONCAT('[',
                 IF(images.id != 'NULL',GROUP_CONCAT(DISTINCT
                     JSON_OBJECT(
@@ -91,8 +97,23 @@ export class PropertyUtils {
         );
         const resData = result.result.map((data) => {
             data.images = data && data.images ? Utils.formatStringObjectsToArrayObjects(data, "images") : null;
+            data.isFavorite = data && data.favoriteId && !isVisitor ? true : false;
             return data;
         });
         return { result: resData, count: result.count };
+    }
+
+    public async favoriteProperty(favoriteDetail: Json) {
+        return await sql.insert(Tables.FAVORITE_PROPERTY, favoriteDetail);
+    }
+
+    public async checkAlreadyFavorites(propertyId, userId) {
+        const selectedFields =
+            [`${FavoriteTable.ID}
+        `];
+        const result = await sql.first(
+            Tables.FAVORITE_PROPERTY, selectedFields, `propertyId = ? AND userId = ?`, [propertyId, userId],
+        );
+        return result;
     }
 }

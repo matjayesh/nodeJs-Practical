@@ -1,4 +1,5 @@
 
+import * as _ from "lodash";
 import { Jwt } from "./helpers/jwt";
 import { ResponseBuilder } from "./helpers/responseBuilder";
 import { UserUtils } from "./modules/user/userUtils";
@@ -7,6 +8,12 @@ export class Middleware {
     private userUtils: UserUtils = new UserUtils();
 
     public authenticateUser = async (req, res, next) => {
+        if (!_.isEmpty(req.byPassRoutes)) {
+            if (_.includes(req.byPassRoutes, req.path)) {
+                next();
+                return;
+            }
+        }
         if (req.headers["x-auth-token"]) {
             const token = req.headers["x-auth-token"].replace("Bearer ", "");
             const decoded = Jwt.decodeAuthToken(

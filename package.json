@@ -29,6 +29,7 @@
     "jm-ez-l10n": "^1.0.0",
     "jm-ez-mysql": "^4.0.0",
     "jsonwebtoken": "^8.4.0",
+    "lodash": "^4.17.21",
     "method-override": "^3.0.0",
     "moment": "^2.23.0",
     "moment-timezone": "^0.5.25",

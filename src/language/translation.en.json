@@ -37,5 +37,7 @@
   "ERR_PROPERTY_CARPET_AREA_REQUIRED": "Property carpet area should not be empty",
   "ERR_PROPERTY_CARPET_UNIT_REQUIRED": "Property carpet area unit should not be empty",
   "PROPERTY_CREATE_SUCCESS": "Property created successfully",
-  "ERR_IMAGE_VALIDATION" : "images must contain not more than 5 elements"
+  "ERR_IMAGE_VALIDATION" : "images must contain not more than 5 elements",
+  "FAVORITE_SUCCESSFULLY": "Favorite Successfully",
+  "ALREADY_FAVORITE": "Already favorites"
 }

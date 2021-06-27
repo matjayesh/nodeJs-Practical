@@ -2,19 +2,11 @@ import * as sql from "jm-ez-mysql";
 import { Tables, UserTable } from "../../config/tables";
 
 export class UserUtils {
-    /** should be use for signup users
-     *
-     * @param userDetail Json
-     */
     public async createUser(userDetail: Json) {
         const newUser = await sql.insert(`${Tables.USER}`, userDetail);
         return newUser.insertId;
     }
 
-    /** should be used for get user detail
-     *
-     * @param email string
-     */
     public async getUserDetailByEmail(email: string) {
         const result = await sql.first(
             Tables.USER,

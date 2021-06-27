@@ -6,6 +6,7 @@ export class Tables {
   public static readonly COMMENTS = "comments";
   public static readonly PROPERTY = "properties";
   public static readonly PROPERTY_IMAGE = "propertyImages";
+  public static readonly FAVORITE_PROPERTY = "favorites";
 }
 
 export enum UserTable {
@@ -74,6 +75,14 @@ export enum PropertyImageTable {
   ID = "id",
   PROPERTY_ID = "propertyId",
   IMAGE = "image",
+  CREATED_AT = "createdAt",
+  UPDATED_AT = "updatedAt",
+}
+
+export enum FavoriteTable {
+  ID = "id",
+  PROPERTY_ID = "propertyId",
+  USER_ID = "userId",
   CREATED_AT = "createdAt",
   UPDATED_AT = "updatedAt",
 }

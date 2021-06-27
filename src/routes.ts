@@ -32,7 +32,7 @@ export class Routes {
     // route for post APIs
     router.use("/posts", middleware.authenticateUser, PostRoute);
     // route for property APIs
-    router.use("/properties", middleware.authenticateUser, PropertyRoute);
+    router.use("/properties", PropertyRoute);
 
     router.all("/*", (req, res) => {
       return res.status(404).json({

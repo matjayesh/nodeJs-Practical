@@ -43,7 +43,25 @@ export class PropertyController {
     }
 
     public getProperties = async (req: Request, res: Response) => {
-        const propertyData = await this.propertyUtils.getProperties(req.query);
+        const propertyData = await this.propertyUtils.getProperties(req.query, false,  req._user.id);
+        const { result, count } = propertyData;
+        const response = ResponseBuilder.dataWithPaginate(result, count);
+        res.status(response.code).json(response);
+    }
+
+    public setFavorite = async (req: Request, res: Response) => {
+        const { id } = req._user;
+        const { propertyId } = req.body;
+        const favoriteData: Json = {
+            propertyId, userId: id,
+        };
+        const resfavoriteData = await this.propertyUtils.favoriteProperty(favoriteData);
+        const response = ResponseBuilder.successMessage(req.t("FAVORITE_SUCCESSFULLY"));
+        res.status(response.code).json(response);
+    }
+
+    public getPropertiesVisitores = async (req: Request, res: Response) => {
+        const propertyData = await this.propertyUtils.getProperties(req.query, true);
         const { result, count } = propertyData;
         const response = ResponseBuilder.dataWithPaginate(result, count);
         res.status(response.code).json(response);
