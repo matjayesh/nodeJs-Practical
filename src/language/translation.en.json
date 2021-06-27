@@ -26,5 +26,16 @@
   "POST_CREATE_SUCCESS": "Post created successfully",
   "ERR_COMMENT_REQUIRED": "Comment should not be empty",
   "ERR_POST_ID_REQUIRED": "Post Id should not be empty",
-  "COMMENT_ADDED_SUCCESS": "Comment added successfully"
+  "COMMENT_ADDED_SUCCESS": "Comment added successfully",
+  "ERR_PROPERTY_NAME_REQUIRED": "Property name should not be empty",
+  "ERR_PROPERTY_DESCRIPTION_REQUIRED": "Property description should not be empty",
+  "ERR_PROPERTY_ADDRESS_REQUIRED": "Property address should not be empty",
+  "ERR_PROPERTY_LOCALITY_REQUIRED": "Property area/locality should not be empty",
+  "ERR_PROPERTY_PRICE_REQUIRED": "Property price should not be empty",
+  "ERR_PROPERTY_BEDROOM_REQUIRED": "Property bedroom should not be empty",
+  "ERR_PROPERTY_BATH_REQUIRED": "Property bath should not be empty",
+  "ERR_PROPERTY_CARPET_AREA_REQUIRED": "Property carpet area should not be empty",
+  "ERR_PROPERTY_CARPET_UNIT_REQUIRED": "Property carpet area unit should not be empty",
+  "PROPERTY_CREATE_SUCCESS": "Property created successfully",
+  "ERR_IMAGE_VALIDATION" : "images must contain not more than 5 elements"
 }

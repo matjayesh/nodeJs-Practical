@@ -4,6 +4,8 @@ export class Tables {
   public static readonly POSTS = "posts";
   public static readonly UPLOADS = "uploads";
   public static readonly COMMENTS = "comments";
+  public static readonly PROPERTY = "properties";
+  public static readonly PROPERTY_IMAGE = "propertyImages";
 }
 
 export enum UserTable {
@@ -45,6 +47,33 @@ export enum CommentTable {
   POST_ID = "postId",
   USER_ID = "userId",
   COMMENT = "comment",
+  CREATED_AT = "createdAt",
+  UPDATED_AT = "updatedAt",
+}
+
+export enum PropertyTable {
+  ID = "id",
+  NAME = "name",
+  USER_ID = "userId",
+  DESCRIPTION = "description",
+  ADDRESS = "address",
+  LOCALITY = "locality",
+  PRICE = "price",
+  BEDROOM = "bedroom",
+  BATH = "bath",
+  AREAUNIT = "areaUnit",
+  CARPETAREA = "carpetArea",
+  AREASQFT = "areaSqFt",
+  AREAYARD = "areaSqYd",
+  AREAMETER = "areaSqMt",
+  CREATED_AT = "createdAt",
+  UPDATED_AT = "updatedAt",
+}
+
+export enum PropertyImageTable {
+  ID = "id",
+  PROPERTY_ID = "propertyId",
+  IMAGE = "image",
   CREATED_AT = "createdAt",
   UPDATED_AT = "updatedAt",
 }

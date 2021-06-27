@@ -19,7 +19,7 @@ export class PostController {
                 req.files.images.push(reqFile);
             }
             for (const image of req.files.images) {
-                const imagesData = await FileUpload.fileUpload(image);
+                const imagesData = await FileUpload.fileUpload(image, "images");
                 const data = {
                     image: imagesData,
                     postId: resPostData.insertId,
