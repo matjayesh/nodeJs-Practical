@@ -39,5 +39,9 @@
   "PROPERTY_CREATE_SUCCESS": "Property created successfully",
   "ERR_IMAGE_VALIDATION" : "images must contain not more than 5 elements",
   "FAVORITE_SUCCESSFULLY": "Favorite Successfully",
-  "ALREADY_FAVORITE": "Already favorites"
+  "ALREADY_FAVORITE": "Already favorites",
+  "ERR_PROPERTY_ID_REQUIRED": "Property id should not be empty",
+  "ERR_USER_ID_REQUIRED": "User id should not be empty",
+  "PROPERTY_DOES_NOT_EXISTS": "Property does not exists",
+  "VIEW_COUNT_UPDATED": "Property view count updated"
 }

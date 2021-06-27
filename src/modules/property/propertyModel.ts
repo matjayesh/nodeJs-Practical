@@ -47,3 +47,22 @@ export class PropertyModel extends Model {
         this.carpetArea = body.carpetArea;
     }
 }
+
+export class SetPropertyFavoriteModel extends Model {
+
+    @IsNotEmpty({ message: "ERR_PROPERTY_ID_REQUIRED" })
+    public propertyId: number;
+    constructor(body: any) {
+        super();
+        this.propertyId = body.propertyId;
+    }
+}
+
+export class PropertyViewModel extends Model {
+    @IsNotEmpty({ message: "ERR_PROPERTY_ID_REQUIRED" })
+    public propertyId: number;
+    constructor(body: any) {
+        super();
+        this.propertyId = body.propertyId;
+    }
+}

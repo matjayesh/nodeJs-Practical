@@ -3,7 +3,7 @@ import { Middleware } from "../../middleware";
 import { Validator } from "../../validate";
 import { PropertyController } from "./propertyController";
 import { PropertyMiddleware } from "./propertyMiddleware";
-import { PropertyModel } from "./propertyModel";
+import { PropertyModel, PropertyViewModel, SetPropertyFavoriteModel } from "./propertyModel";
 const router: Router = Router();
 const propertyController = new PropertyController();
 const propertyMiddleware = new PropertyMiddleware();
@@ -25,11 +25,17 @@ const propertyListRoutePath = [propertyController.getProperties];
 router.get("/list", propertyListRoutePath);
 
 // Create favorite properties
-const propertyFavoriteRoutePath = [propertyMiddleware.checkAlreadyFavorites, propertyController.setFavorite];
+const propertyFavoriteRoutePath = [v.validate(SetPropertyFavoriteModel)
+    , propertyMiddleware.checkAlreadyFavorites, propertyController.setFavorite];
 router.post("/set-favorite", propertyFavoriteRoutePath);
 
 // list all properties for visitors
 const propertyVisitorListRoutePath = [propertyController.getPropertiesVisitores];
 router.get("/visitors", propertyVisitorListRoutePath);
+
+// Update property view count
+const propertyViewCountRoutePath = [v.validate(PropertyViewModel), propertyMiddleware.checkPropertyExists,
+propertyController.updatePropertyViewCount];
+router.post("/update-view-count", propertyViewCountRoutePath);
 
 export const PropertyRoute: Router = router;

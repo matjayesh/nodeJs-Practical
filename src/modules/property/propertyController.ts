@@ -66,4 +66,14 @@ export class PropertyController {
         const response = ResponseBuilder.dataWithPaginate(result, count);
         res.status(response.code).json(response);
     }
+
+    public updatePropertyViewCount = async (req: Request, res: Response) => {
+        const { propertyId } = req.body;
+        const favoriteViewCount: Json = {
+            viewCount: +req.propertyData.viewCount + 1,
+        };
+        const resfavoriteViewCount = await this.propertyUtils.updateViewCount(favoriteViewCount, propertyId);
+        const response = ResponseBuilder.successMessage(req.t("VIEW_COUNT_UPDATED"));
+        res.status(response.code).json(response);
+    }
 }

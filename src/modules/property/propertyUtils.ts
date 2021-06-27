@@ -39,7 +39,7 @@ export class PropertyUtils {
     }
 
     public async getProperties(filterData, isVisitor, userId ?: any) {
-        const { skip, limit, locality, date, bedroom, maxPrice, minPrice } = filterData;
+        const { skip, limit, locality, date, bedroom, maxPrice, minPrice, propertyId } = filterData;
         const [page, pageLimit] = Utils.getPageSkipAndLimit(skip, limit);
         let condition = "0=0";
         let userCondition = "";
@@ -65,6 +65,9 @@ export class PropertyUtils {
         if (userId) {
             userCondition = ` AND favP.userId = ${userId}`;
         }
+        if (propertyId) {
+            condition += ` AND property.id = ${propertyId}`;
+        }
         const tables = `${Tables.PROPERTY} AS property
         LEFT JOIN ${Tables.PROPERTY_IMAGE} AS images ON images.propertyId = property.id
         LEFT JOIN ${Tables.FAVORITE_PROPERTY} AS favP ON favP.propertyId = property.id ${userCondition}`;
@@ -83,6 +86,7 @@ export class PropertyUtils {
                 property.areaSqFt,
                 property.areaSqYd,
                 property.areaSqMt,
+                property.viewCount,
                 favP.id as favoriteId,
                 CONCAT('[',
                 IF(images.id != 'NULL',GROUP_CONCAT(DISTINCT
@@ -115,5 +119,20 @@ export class PropertyUtils {
             Tables.FAVORITE_PROPERTY, selectedFields, `propertyId = ? AND userId = ?`, [propertyId, userId],
         );
         return result;
+    }
+
+    public async getPropertyById(propertyId) {
+        const selectedFields =
+            [`${FavoriteTable.ID},
+            ${FavoriteTable.VIEW_COUNT}
+        `];
+        const result = await sql.first(
+            Tables.PROPERTY, selectedFields, `id = ?`, [propertyId],
+        );
+        return result;
+    }
+
+    public async updateViewCount(data, propertyId) {
+        return await sql.updateFirst(Tables.PROPERTY, data, "id = ?", [propertyId]);
     }
 }

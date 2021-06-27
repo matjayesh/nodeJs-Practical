@@ -82,6 +82,7 @@ export enum PropertyImageTable {
 export enum FavoriteTable {
   ID = "id",
   PROPERTY_ID = "propertyId",
+  VIEW_COUNT = "viewCount",
   USER_ID = "userId",
   CREATED_AT = "createdAt",
   UPDATED_AT = "updatedAt",

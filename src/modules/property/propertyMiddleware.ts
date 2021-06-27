@@ -25,4 +25,14 @@ export class PropertyMiddleware {
             next();
         }
     }
+
+    public checkPropertyExists = async (req, res, next) => {
+        const data = await this.propertyUtils.getPropertyById(req.body.propertyId);
+        if (data) {
+            req.propertyData = data;
+            return next();
+        } else {
+            return res.status(409).json({ error: [{ msg: "PROPERTY_DOES_NOT_EXISTS" }] });
+        }
+    }
 }
